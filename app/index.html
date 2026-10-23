@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=1920, height=1080">
+    <title>TV Home</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="$WEBAPIS/webapis/webapis.js"></script>
+</head>
+<body>
+    <div class="backdrop"></div>
+
+    <header class="topbar">
+        <div class="greeting" id="greeting">Good evening</div>
+        <div class="clock">
+            <div class="time" id="time">--:--</div>
+            <div class="date" id="date"></div>
+        </div>
+    </header>
+
+    <main>
+        <h2 class="row-title">Apps</h2>
+        <div class="viewport"><div class="grid" id="grid"></div></div>
+    </main>
+
+    <footer class="hint">
+        <span class="key">◀ ▲ ▼ ▶</span> Move
+        <span class="key">OK</span> Open
+        <span class="key">BACK</span> Exit
+    </footer>
+
+    <div class="toast" id="toast"></div>
+
+    <script src="js/apps.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>

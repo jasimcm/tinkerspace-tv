@@ -1,0 +1,5 @@
+.buildResult/
+dist/
+watcher/
+*.wgt
+.DS_Store
