@@ -49,7 +49,7 @@ For TV Home use `../dist/TV Home.wgt` and app ID `TvHome0001.TvHome`.
   ever loads anything other than this site.
 - **Starting at power-on:** retail Samsung TVs don't let side-loaded apps auto-start.
   *Autorun Last App* ignores them and `on-boot` web services are not allowed with a public
-  certificate. Instead a **SmartThings rule** (cloud-run) launches the app ~20 s after the TV
+  certificate. Instead a **SmartThings rule** (cloud-run) launches the app a few seconds after the TV
   turns on — see below. TinkerSpace is also pinned first on the Home bar (**Home → OK**).
 - **TV settings for an always-on display:** General & Privacy → Power and Energy Saving →
   Auto Power Off **Off**; System Manager → Time → Sleep Timer / Off Timer **Off**.
@@ -70,6 +70,7 @@ curl -s -X POST -H "Authorization: Bearer $TOK" -H "Content-Type: application/js
   -d @smartthings/autostart-rule.json
 ```
 
-The rule fires when the TV's `switch` changes to `on`, waits 20 s for the TV to finish
-booting, then sends `custom.launchapp` → `launchApp("TnkSpace01.TinkerSpace")`. It only reacts
+The rule fires when the TV's `switch` changes to `on`: it mutes the TV straight away, sends
+`custom.launchapp` → `launchApp("TnkSpace01.TinkerSpace")` after 3 s, and again after 15 s in
+case the TV wasn't ready. Turn **Autorun Last App off** on the TV so nothing else opens first. It only reacts
 to power-on, so pressing Home afterwards still works normally. Delete the token afterwards.

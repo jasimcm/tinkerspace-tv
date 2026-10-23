@@ -1,17 +1,114 @@
 {
   "name": "TinkerSpace autostart",
-  "actions": [{
-    "if": {
-      "changes": {
-        "equals": {
-          "left": {"device": {"devices": ["<TV_DEVICE_ID>"], "component": "main", "capability": "switch", "attribute": "switch"}},
-          "right": {"string": "on"}
-        }
-      },
-      "then": [
-        {"sleep": {"duration": {"value": {"integer": 20}, "unit": "Second"}}},
-        {"command": {"devices": ["<TV_DEVICE_ID>"], "commands": [{"component": "main", "capability": "custom.launchapp", "command": "launchApp", "arguments": [{"string": "TnkSpace01.TinkerSpace"}]}]}}
-      ]
+  "actions": [
+    {
+      "if": {
+        "changes": {
+          "equals": {
+            "left": {
+              "device": {
+                "devices": [
+                  "<TV_DEVICE_ID>"
+                ],
+                "component": "main",
+                "capability": "switch",
+                "attribute": "switch"
+              }
+            },
+            "right": {
+              "string": "on"
+            }
+          }
+        },
+        "then": [
+          {
+            "command": {
+              "devices": [
+                "<TV_DEVICE_ID>"
+              ],
+              "commands": [
+                {
+                  "component": "main",
+                  "capability": "audioMute",
+                  "command": "mute"
+                }
+              ]
+            }
+          },
+          {
+            "sleep": {
+              "duration": {
+                "value": {
+                  "integer": 3
+                },
+                "unit": "Second"
+              }
+            }
+          },
+          {
+            "command": {
+              "devices": [
+                "<TV_DEVICE_ID>"
+              ],
+              "commands": [
+                {
+                  "component": "main",
+                  "capability": "custom.launchapp",
+                  "command": "launchApp",
+                  "arguments": [
+                    {
+                      "string": "TnkSpace01.TinkerSpace"
+                    }
+                  ]
+                }
+              ]
+            }
+          },
+          {
+            "command": {
+              "devices": [
+                "<TV_DEVICE_ID>"
+              ],
+              "commands": [
+                {
+                  "component": "main",
+                  "capability": "audioMute",
+                  "command": "mute"
+                }
+              ]
+            }
+          },
+          {
+            "sleep": {
+              "duration": {
+                "value": {
+                  "integer": 12
+                },
+                "unit": "Second"
+              }
+            }
+          },
+          {
+            "command": {
+              "devices": [
+                "<TV_DEVICE_ID>"
+              ],
+              "commands": [
+                {
+                  "component": "main",
+                  "capability": "custom.launchapp",
+                  "command": "launchApp",
+                  "arguments": [
+                    {
+                      "string": "TnkSpace01.TinkerSpace"
+                    }
+                  ]
+                }
+              ]
+            }
+          }
+        ]
+      }
     }
-  }]
+  ]
 }
