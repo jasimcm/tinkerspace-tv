@@ -28,6 +28,19 @@
         }
     }
 
+    // Mute the TV while the display is on screen and unmute when another app
+    // comes to the front, so other apps always have sound.
+    function setMute(muted) {
+        try {
+            tizen.tvaudiocontrol.setMute(muted);
+        } catch (e) {
+            console.error('setMute failed', e);
+        }
+    }
+
+    function muteWhileShown() { setMute(true); }
+    function restoreSound() { setMute(false); }
+
     // Fetch the live index.html and mount its stylesheets and scripts here, so
     // the site always runs its latest deploy with this page as its document.
     function loadSite() {
@@ -77,11 +90,17 @@
     });
 
     document.addEventListener('visibilitychange', function () {
-        if (!document.hidden) keepAwake();
+        if (document.hidden) {
+            restoreSound();
+        } else {
+            keepAwake();
+            muteWhileShown();
+        }
     });
 
     loadSite();
     keepAwake();
+    muteWhileShown();
     setInterval(keepAwake, SCREENSAVER_EVERY_MS);
     setInterval(function () { location.reload(); }, RELOAD_EVERY_MS);
 })();
